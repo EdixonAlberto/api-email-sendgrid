@@ -1,5 +1,5 @@
 async function configLoad(): Promise<void> {
-  if (process.env.NODE_MODULE === undefined) {
+  if (process.env.NODE_ENV === undefined) {
     const result = (await import('dotenv')).config(); // Load enviroment variables, path default: ".env"
 
     if (result.error) throw new Error(`>> CONFIG -> ${result.error}`);
@@ -10,7 +10,7 @@ async function configLoad(): Promise<void> {
   const config: TConfig = {
     port: Number(ENV.PORT) || 3000,
     sendgridToken: ENV.SENDGRID_API_TOKEN || '',
-    modeDev: ENV.NODE_MODULE !== 'production'
+    modeDev: ENV.NODE_ENV !== 'production'
   };
 
   global.config = config;
