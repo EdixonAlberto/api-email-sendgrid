@@ -1,0 +1,12 @@
+# Folders
+node_modules/
+.vscode/
+dist/
+
+# Files
+.env
+.env.*
+*.log
+
+# Remove Later
+yarn.lock
