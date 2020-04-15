@@ -21,7 +21,8 @@
     "start:dev": "nodemon -e ts -w ./src --exec \"clear && ts-node -r ./src\"",
     "start:prod": "yarn run build && yarn start",
     "build": "tsc",
-    "start": "node -r ./dist"
+    "start": "node -r ./dist",
+    "deploy": "git push -d heroku master"
   },
   "dependencies": {
     "@sendgrid/mail": "7.0.0",
