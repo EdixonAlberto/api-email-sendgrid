@@ -1,17 +1,18 @@
 import { Request, Response, NextFunction } from 'express';
 
-const setHeader = (req: Request, res: Response, next: NextFunction) => {
-  const allow = '';
+const setHeader = (req: Request, res: Response, next: NextFunction): void => {
+  const origin: string = global.config.urlAllowed;
 
-  res.header('Access-Contro-Allow-Origin', allow); // TODO: Pensar mejor esto;
-
+  // Input
+  res.header('Access-Control-Allow-Origin', origin);
   res.header('Access-Control-Allow-Headers', [
-    'Access-Contro-Allow-Origin',
+    'Access-Control-Allow-Origin',
     'Content-Type'
     // TODO: Agregar mas...
   ]);
 
-  // res.header('Content-Type', 'application/json')
+  // Output
+  res.header('Content-Type', 'application/json');
 
   next();
 };

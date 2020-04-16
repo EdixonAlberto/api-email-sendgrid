@@ -11,7 +11,7 @@ route.get('/', (req: Request, res: Response): void => {
   res.json({
     api: 'Email Sendgrid',
     version: process.env.npm_package_version,
-    serverTime: new Date().getTime()
+    serverTime: new Date().toUTCString().toLocaleUpperCase()
   });
 });
 

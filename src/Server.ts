@@ -18,9 +18,9 @@ class Server {
   }
 
   private middleware(): void {
-    this.app.use(express.json());
     global.config.modeDev ? this.app.use(morgan) : null;
-    // this.app.use(setHeader);
+    this.app.use(setHeader);
+    this.app.use(express.json());
   }
 
   private routes(): void {

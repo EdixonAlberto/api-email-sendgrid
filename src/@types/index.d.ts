@@ -1,5 +1,6 @@
 type TConfig = {
   port: number;
+  urlAllowed: string;
   sendgridToken: string;
   modeDev: boolean;
 };
