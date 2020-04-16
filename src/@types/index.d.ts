@@ -14,6 +14,7 @@ type TEmail = {
 type Tsendgrid = {
   // TODO: add other data later
   response: [import('@sendgrid/client/src/response').ClientResponse, {}];
+  error: import('@sendgrid/helpers/classes').ResponseError;
 };
 
 /************************************ DECLARATIONS **************************************/

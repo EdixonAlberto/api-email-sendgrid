@@ -27,13 +27,12 @@ yarn build # build application
 yarn start # mode server
 ```
 
-### EndPoints
+### Endpoints List
 
-> **URL =** URL_API/api
-
-| ENDPOINT     | HTTP | Description  |
-| ------------ | ---- | ------------ |
-| `/sendemail` | POST | Send a email |
+| Endpoint          | HTTP | Description      |
+| ----------------- | ---- | ---------------- |
+| `/api`            | GET  | Check api status |
+| `/api/send_email` | POST | Send a email     |
 
 <!-- ### Screenshots
 
