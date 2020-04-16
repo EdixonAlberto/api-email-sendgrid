@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Api to send email through of service the Sendgrid",
   "keywords": [
-    "node",
+    "nodejs",
     "typescript",
     "api",
     "sendgrid"

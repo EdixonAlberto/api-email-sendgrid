@@ -1,10 +1,12 @@
-# api-email
+# api-email-sendgrid
 
 [![Linkedin: https://linkedin.com/in/edixonalberto](https://img.shields.io/badge/author-EdixonAlberto-purple.svg)](https://linkedin.com/in/edixonalberto)
 [![MIT license](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE.md)
 ![GitHub](https://img.shields.io/github/followers/EdixonAlberto.svg?label=Follow&style=social)
 
 Api to send email through of service the Sendgrid
+
+![api-email-sendgrid](./.github/image.png)
 
 ### Starter
 
@@ -34,6 +36,6 @@ yarn start # mode server
 | `/api`            | GET  | Check api status |
 | `/api/send_email` | POST | Send a email     |
 
-<!-- ### Screenshots
+### Request Example
 
-![image](./docs/template.png) -->
+![request-example](./.github/example.png)
