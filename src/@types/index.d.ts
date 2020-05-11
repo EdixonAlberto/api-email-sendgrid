@@ -1,7 +1,11 @@
 type TConfig = {
   port: number;
+  serverApiKey: {
+    name: string;
+    value: string;
+  };
   urlAllowed: string;
-  sendgridToken: string;
+  sendgridApiKey: string;
   modeDev: boolean;
 };
 

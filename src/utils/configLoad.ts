@@ -9,8 +9,12 @@ async function configLoad(): Promise<void> {
 
   const config: TConfig = {
     port: Number(ENV.PORT) || 3000,
-    urlAllowed: ENV.URL_ALLOWED || '',
-    sendgridToken: ENV.SENDGRID_API_TOKEN || '',
+    serverApiKey: {
+      name: 'AK',
+      value: ENV.SERVER_API_KEY as string
+    },
+    urlAllowed: ENV.URL_ALLOWED as string,
+    sendgridApiKey: ENV.SENDGRID_API_KEY as string,
     modeDev: ENV.NODE_ENV !== 'production'
   };
 
