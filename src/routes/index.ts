@@ -36,8 +36,7 @@ route.post(
       sgMail.setApiKey(global.config.sendgridApiKey);
 
       try {
-        // const [result]: Tsendgrid['response'] = await sgMail.send(email);
-        const result = { statusCode: 202, body: {} };
+        const [result]: Tsendgrid['response'] = await sgMail.send(email);
         if (global.config.modeDev) console.log(result.statusCode, result.body);
 
         if (result.statusCode === 202) {
