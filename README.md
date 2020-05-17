@@ -10,23 +10,43 @@ Api to send email through of service the Sendgrid
 
 ### Starter
 
+Install all the dependencies.
+
 ```sh
-yarn install # install all the dependencies
-
-# create file .env with the values they are in the template and later add the environment variables
-copy template.env .env
-
-yarn run start:dev # start in mode development
+npm install
 ```
 
-### Comands
+Create file `.env` with the keys they are in the template.
 
 ```sh
-yarn start:dev # mode development
-yarn start:prod # mode production
+copy template.env .env
+```
 
-yarn build # build application
-yarn start # mode server
+Add the environment variables.
+
+- create a **SENDGRID_API_KEY** logging into your
+  [sendgrid account](https://app.sendgrid.com/) &#x279c;
+
+- create a **SERVER_API_KEY** executing the command `create-apikey`.
+
+```sh
+npm run create-apikey
+```
+
+Start api in mode development.
+
+```sh
+npm run start:dev
+```
+
+### Main Commands
+
+```sh
+npm start:dev # mode development
+npm start:prod # mode production
+
+npm build # build application
+npm start # mode server
 ```
 
 ### Endpoints List

@@ -1,13 +1,16 @@
 import { Request, Response, NextFunction } from 'express';
 
 const setHeader = (req: Request, res: Response, next: NextFunction): void => {
-  const origin: string = global.config.urlAllowed;
+  const ORIGIN: string = global.config.urlAllowed;
+  const HEADER_API_KEY: string = global.config.serverApiKey.name;
 
   // Input
-  res.header('Access-Control-Allow-Origin', origin);
+  res.header('Access-Control-Allow-Origin', ORIGIN);
+  res.header('Accept', 'application/json');
   res.header('Access-Control-Allow-Headers', [
     'Access-Control-Allow-Origin',
-    'Content-Type'
+    'Content-Type',
+    HEADER_API_KEY
     // TODO: Agregar mas...
   ]);
 

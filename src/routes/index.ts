@@ -33,7 +33,7 @@ route.post(
       };
 
       // Setting token of Sendgrid
-      sgMail.setApiKey(global.config.sendgridToken);
+      sgMail.setApiKey(global.config.sendgridApiKey);
 
       try {
         const [result]: Tsendgrid['response'] = await sgMail.send(email);

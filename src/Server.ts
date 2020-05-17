@@ -7,6 +7,7 @@ import routes from './routes';
 import morgan from './middleware/morgan';
 import setHeader from './middleware/setHeader';
 import notFound from './middleware/notFound';
+import validateApiKey from './middleware/validateApiKey';
 
 class Server {
   private app: Application;
@@ -20,6 +21,7 @@ class Server {
   private middleware(): void {
     global.config.modeDev ? this.app.use(morgan) : null;
     this.app.use(setHeader);
+    this.app.use(validateApiKey);
     this.app.use(express.json());
   }
 

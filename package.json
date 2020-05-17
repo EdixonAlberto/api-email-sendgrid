@@ -18,11 +18,12 @@
   "private": false,
   "scripts": {
     "lint": "prettier --write ./src/**/*.ts",
+    "deploy": "git push -f heroku master",
+    "create-apikey": "ts-node ./src/utils/createToken.ts",
     "start:dev": "nodemon -e ts -w ./src --exec \"clear && ts-node -r ./src\"",
     "start:prod": "yarn run build && yarn start",
     "build": "tsc",
-    "start": "node -r ./dist",
-    "deploy": "git push -f heroku master"
+    "start": "node -r ./dist"
   },
   "dependencies": {
     "@sendgrid/mail": "7.0.0",
