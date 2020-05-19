@@ -6,13 +6,14 @@ const setHeader = (req: Request, res: Response, next: NextFunction): void => {
 
   // Input
   res.header('Access-Control-Allow-Origin', ORIGIN);
-  res.header('Accept', 'application/json');
+  res.header('Access-Control-Allow-Methods', ['GET', 'POST']);
   res.header('Access-Control-Allow-Headers', [
     'Access-Control-Allow-Origin',
     'Content-Type',
     HEADER_API_KEY
     // TODO: Agregar mas...
   ]);
+  res.header('Accept', 'application/json');
 
   // Output
   res.header('Content-Type', 'application/json');
