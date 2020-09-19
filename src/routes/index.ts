@@ -37,11 +37,11 @@ route.post(
 
       try {
         const [result]: Tsendgrid['response'] = await sgMail.send(email);
-        if (global.config.modeDev) console.log(result.statusCode, result.body);
+        // const result = {statusCode: 202, body: {}} // NOTA: para pruebas
+        if (global.config.modeDev) console.log('RESULT ->', result.statusCode, result.body);
 
         if (result.statusCode === 202) {
-          res.status(200);
-          res.json({
+          res.status(200).json({
             result: {
               type: 'Successful',
               ServiceStatusCode: result.statusCode,
@@ -49,8 +49,7 @@ route.post(
             }
           });
         } else {
-          res.status(400);
-          res.json({
+          res.status(400).json({
             error: {
               type: 'Email Error',
               ServiceStatusCode: result.statusCode,
@@ -61,8 +60,7 @@ route.post(
       } catch (error) {
         const err: Tsendgrid['error'] = error;
 
-        res.status(500);
-        res.json({
+        res.status(500).json({
           error: {
             type: 'Sendgrid Error',
             ServiceStatusCode: err.code,
@@ -74,8 +72,7 @@ route.post(
     } else {
       if (global.config.modeDev) console.log(data);
 
-      res.status(400);
-      res.json({
+      res.status(400).json({
         error: {
           type: 'Email Error',
           ServiceStatusCode: 0,

@@ -10,7 +10,7 @@
   ],
   "main": "dist/index.js",
   "author": {
-    "name": "Edixon Alberto",
+    "name": "Edixon Piña",
     "email": "edixonalbertto@gmail.com",
     "url": "https://www.edixonalberto.com"
   },
@@ -40,7 +40,7 @@
     "typescript": "3.8.3"
   },
   "engines": {
-    "node": "12.13.0",
-    "yarn": "1.19.1"
+    "node": "12.18.0",
+    "yarn": "1.22.5"
   }
 }
