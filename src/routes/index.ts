@@ -1,14 +1,17 @@
 import { Router, Request, Response } from 'express';
-import sgMail from '@sendgrid/mail';
+import EmailController from '../controllers/EmailController';
+import RecaptchaController from '../controllers/RecaptchaController';
+import { endpoints } from '@ENUM';
+
+const ERROR_MESSAGE: string = 'Missing or incorrect data';
 
 const route = Router();
 
 /**
  *  Route to check api status
  * */
-route.get('/', (req: Request, res: Response): void => {
-  res.status(200);
-  res.json({
+route.get(endpoints.API, (req: Request, res: Response): void => {
+  res.status(200).json({
     api: 'Email Sendgrid',
     version: process.env.npm_package_version,
     serverTime: new Date().toUTCString().toLocaleUpperCase()
@@ -19,64 +22,50 @@ route.get('/', (req: Request, res: Response): void => {
  *  Route to send email
  * */
 route.post(
-  '/send_email',
+  endpoints.SEND_EMAIL,
   async (req: Request, res: Response): Promise<void> => {
-    const data = req.body as TEmail;
+    const body = req.body as TBodyEmail;
 
-    // Validate input data
-    if (data.to && data.from && data.subject && data.message) {
-      const email = {
-        to: data.to,
-        from: data.from,
-        subject: data.subject,
-        text: data.message
+    // Validate input email
+    if (body.to && body.from && body.subject && body.message) {
+      const email: TSendgrid['email'] = {
+        to: body.to,
+        from: body.from,
+        subject: body.subject,
+        text: body.message
       };
 
-      // Setting token of Sendgrid
-      sgMail.setApiKey(global.config.sendgridApiKey);
-
-      try {
-        const [result]: Tsendgrid['response'] = await sgMail.send(email);
-        // const result = {statusCode: 202, body: {}} // NOTA: para pruebas
-        if (global.config.modeDev) console.log('RESULT ->', result.statusCode, result.body);
-
-        if (result.statusCode === 202) {
-          res.status(200).json({
-            result: {
-              type: 'Successful',
-              ServiceStatusCode: result.statusCode,
-              message: `Email sended to ${data.to}`
-            }
-          });
-        } else {
-          res.status(400).json({
-            error: {
-              type: 'Email Error',
-              ServiceStatusCode: result.statusCode,
-              message: result.body
-            }
-          });
-        }
-      } catch (error) {
-        const err: Tsendgrid['error'] = error;
-
-        res.status(500).json({
-          error: {
-            type: 'Sendgrid Error',
-            ServiceStatusCode: err.code,
-            message: err.message,
-            description: err.response?.body || ''
-          }
-        });
-      }
+      EmailController.sendEmail(email, res);
     } else {
-      if (global.config.modeDev) console.log(data);
+      if (global.config.modeDev) console.log(body);
 
       res.status(400).json({
         error: {
           type: 'Email Error',
-          ServiceStatusCode: 0,
-          message: 'Json with incorrect data'
+          message: ERROR_MESSAGE
+        }
+      });
+    }
+  }
+);
+
+/**
+ *  Route to verify recaptcha
+ *  */
+route.post(
+  endpoints.RECAPTCHA_VERIFY,
+  async (req: Request, res: Response): Promise<void> => {
+    const response = req.body.response as string;
+
+    if (response) {
+      RecaptchaController.verify(response, res);
+    } else {
+      if (global.config.modeDev) console.log(response);
+
+      res.status(400).json({
+        error: {
+          type: 'token empty',
+          message: ERROR_MESSAGE
         }
       });
     }

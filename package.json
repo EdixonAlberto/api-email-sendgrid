@@ -1,6 +1,6 @@
 {
   "name": "api-email",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Api to send email through of service the Sendgrid",
   "keywords": [
     "nodejs",
@@ -20,10 +20,8 @@
     "lint": "prettier --write ./src/**/*.ts",
     "deploy": "git push -f heroku master",
     "create-apikey": "ts-node ./src/utils/createToken.ts",
-    "start:dev": "nodemon -e ts -w ./src --exec \"clear && ts-node -r ./src\"",
-    "start:prod": "yarn run build && yarn start",
-    "build": "tsc",
-    "start": "node -r ./dist"
+    "build": "tsc && node ./dist",
+    "start": "nodemon -e ts -w ./src --exec \"ts-node ./src\""
   },
   "dependencies": {
     "@sendgrid/mail": "7.0.0",

@@ -1,13 +1,11 @@
 import express, { Application } from 'express';
-
-/* ROUTES */
-import routes from './routes';
-
 /* MIDDLEWARE */
 import morgan from './middleware/morgan';
 import setHeader from './middleware/setHeader';
 import notFound from './middleware/notFound';
 import validateApiKey from './middleware/validateApiKey';
+/* ROUTES */
+import routes from './routes';
 
 class Server {
   private app: Application;
@@ -26,13 +24,13 @@ class Server {
   }
 
   private routes(): void {
-    this.app.use('/api', routes); // TODO: definir el endpoint frontal mas adelante
+    this.app.use('/api', routes);
     this.app.use(notFound);
   }
 
   public start(PORT = global.config.port): void {
     this.app.listen(PORT);
-    console.log('>> SERVER OK -> on port:', PORT);
+    console.log('>> SERVER OK');
   }
 }
 

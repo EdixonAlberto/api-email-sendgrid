@@ -1,23 +1,31 @@
 type TConfig = {
   port: number;
-  serverApiKey: {
-    name: string;
-    value: string;
+  headerApiKey: string;
+  urlAllowedList: string;
+  apiKey: {
+    server: string;
+    sendgrid: string;
+    recaptcha: string;
   };
-  urlAllowed: string;
-  sendgridApiKey: string;
   modeDev: boolean;
 };
 
-type TEmail = {
-  from: string;
+type TBodyEmail = {
   to: string;
+  from: string;
   subject: string;
   message: string;
 };
 
-type Tsendgrid = {
-  // TODO: add other data later
+type TRecaptchaResponse = {
+  success: boolean;
+  challenge_ts: string;
+  hostname: string;
+  'error-codes': string[];
+};
+
+type TSendgrid = {
+  email: import('@sendgrid/helpers/classes/mail').MailDataRequired;
   response: [import('@sendgrid/client/src/response').ClientResponse, {}];
   error: import('@sendgrid/helpers/classes').ResponseError;
 };

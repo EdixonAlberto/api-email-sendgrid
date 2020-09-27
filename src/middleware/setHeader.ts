@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 
 const setHeader = (req: Request, res: Response, next: NextFunction): void => {
-  const ORIGINS: string = global.config.urlAllowed;
-  const HEADER_API_KEY: string = global.config.serverApiKey.name;
+  const ORIGINS: string = global.config.urlAllowedList;
+  const HEADER_API_KEY: string = global.config.headerApiKey;
 
   ORIGINS.split(',').map((origin) => {
     const originIn = req.header('origin') as string;

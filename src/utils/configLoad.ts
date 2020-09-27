@@ -3,19 +3,20 @@ async function configLoad(): Promise<void> {
     // Load enviroment variables, path default: ".env"
     const result = (await import('dotenv')).config();
 
-    if (result.error) throw new Error(`>> CONFIG -> ${result.error}`);
+    if (result.error) throw new Error(`ERROR-CONFIG -> ${result.error}`);
   }
 
   const ENV: NodeJS.ProcessEnv = process.env;
 
   const config: TConfig = {
     port: Number(ENV.PORT) || 3000,
-    serverApiKey: {
-      name: 'ak',
-      value: ENV.SERVER_API_KEY as string
+    headerApiKey: 'ak',
+    urlAllowedList: ENV.URL_ALLOWED_LIST as string,
+    apiKey: {
+      server: ENV.SERVER_API_KEY as string,
+      sendgrid: ENV.SENDGRID_API_KEY as string,
+      recaptcha: ENV.RECAPTCHA_API_KEY as string
     },
-    urlAllowed: ENV.URL_ALLOWED as string,
-    sendgridApiKey: ENV.SENDGRID_API_KEY as string,
     modeDev: ENV.NODE_ENV !== 'production'
   };
 

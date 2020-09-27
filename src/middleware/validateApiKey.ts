@@ -1,16 +1,15 @@
 import { Request, Response, NextFunction } from 'express';
 
 const validateApiKey = (req: Request, res: Response, next: NextFunction): void => {
-  // TODO: mejorar la captura del method OPTIONS debido al config de CORS
   if (req.method === 'OPTIONS') next();
   else {
-    const API_KEY_NAME: string = global.config.serverApiKey.name;
-    const API_KEY_VALUE: string = global.config.serverApiKey.value;
+    const HEADER_API_KEY: string = global.config.headerApiKey;
+    const API_KEY: string = global.config.apiKey.server;
 
-    const apiKey = req.header(API_KEY_NAME) as string;
+    const apiKey = req.header(HEADER_API_KEY) as string;
 
     switch (apiKey) {
-      case API_KEY_VALUE:
+      case API_KEY:
         next();
         break;
 
