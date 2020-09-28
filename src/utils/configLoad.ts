@@ -1,5 +1,5 @@
 async function configLoad(): Promise<void> {
-  if (process.env.NODE_ENV === undefined) {
+  if (process.env.NODE_ENV !== 'production') {
     // Load enviroment variables, path default: ".env"
     const result = (await import('dotenv')).config();
 

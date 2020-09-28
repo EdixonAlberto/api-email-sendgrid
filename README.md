@@ -13,7 +13,7 @@ Api to send email through of service the Sendgrid
 Install all the dependencies.
 
 ```sh
-npm install
+yarn install
 ```
 
 Create file `.env` with the keys they are in the template.
@@ -24,37 +24,47 @@ copy template.env .env
 
 Add the environment variables.
 
+- create a **SERVER_API_KEY** executing the command `create-apikey`.
+
 - create a **SENDGRID_API_KEY** logging into your
   [sendgrid account](https://app.sendgrid.com/) &#x279c;
 
-- create a **SERVER_API_KEY** executing the command `create-apikey`.
+- create a **RECAPTCHA_API_KEY** using google service
+  [Recaptcha](https://developers.google.com/recaptcha/docs/v3)
 
 ```sh
-npm run create-apikey
+yarn run create-apikey
 ```
 
 Start api in mode development.
 
 ```sh
-npm run start:dev
+yarn run dev
 ```
 
-### Main Commands
+### Commands
 
 ```sh
-npm start:dev # mode development
-npm start:prod # mode production
+yarn run lint # linting to files .ts with Prettier
+yarn run create-apikey # create api key
+yarn run dev # run api in mode development
+yarn run prod # run api in mode production
+```
 
-npm build # build application
-npm start # mode server
+### Command to Deploy in Server
+
+```sh
+yarn run build # build api
+yarn start # run api builded
 ```
 
 ### Endpoints List
 
-| Endpoint          | HTTP | Description      |
-| ----------------- | ---- | ---------------- |
-| `/api`            | GET  | Check api status |
-| `/api/send_email` | POST | Send a email     |
+| Endpoint                | HTTP | Description              |
+| ----------------------- | ---- | ------------------------ |
+| `/api`                  | GET  | Check api status         |
+| `/api/recaptcha_verify` | POST | Verify captcha of Google |
+| `/api/send_email`       | POST | Send a email             |
 
 ### Request Example
 
