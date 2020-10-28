@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
 
 const setHeader = (req: Request, res: Response, next: NextFunction): void => {
-  const ORIGINS: string = global.config.urlAllowedList;
+  const ORIGINS: string[] = global.config.urlAllowedList;
   const HEADER_API_KEY: string = global.config.headerApiKey;
+  const originIn = req.header('origin') as string;
 
-  ORIGINS.split(',').map((origin) => {
-    const originIn = req.header('origin') as string;
+  for (const origin of ORIGINS) {
     if (origin === originIn) res.header('Access-Control-Allow-Origin', origin);
-  });
+  }
 
   res.header('Access-Control-Allow-Methods', ['OPTIONS', 'POST']);
   res.header('Access-Control-Allow-Headers', ['Content-Type', HEADER_API_KEY]);

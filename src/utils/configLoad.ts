@@ -11,7 +11,7 @@ async function configLoad(): Promise<void> {
   const config: TConfig = {
     port: Number(ENV.PORT) || 3000,
     headerApiKey: 'ak',
-    urlAllowedList: ENV.URL_ALLOWED_LIST as string,
+    urlAllowedList: (ENV.URL_ALLOWED_LIST as string).split(','),
     apiKey: {
       server: ENV.SERVER_API_KEY as string,
       sendgrid: ENV.SENDGRID_API_KEY as string,

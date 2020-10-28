@@ -2,6 +2,8 @@
   "name": "api-email",
   "version": "1.0.0",
   "description": "Api to send email through of service the Sendgrid",
+  "private": false,
+  "license": "MIT",
   "keywords": [
     "nodejs",
     "typescript",
@@ -9,29 +11,28 @@
     "sendgrid",
     "recaptcha"
   ],
-  "main": "dist/index.js",
   "author": {
     "name": "Edixon Piña",
     "email": "edixonalbertto@gmail.com",
     "url": "https://www.edixonalberto.com"
   },
-  "license": "MIT",
-  "private": false,
   "scripts": {
-    "lint": "prettier --write ./src/**/*.ts",
-    "create-apikey": "ts-node ./src/utils/createToken.ts",
-    "dev": "nodemon -e ts -w ./src --exec \"ts-node ./src\"",
-    "prod": "yarn run build && yarn start",
+    "lint": "prettier --write src/**/*.ts",
+    "create-apikey": "ts-node tools/createToken.ts",
+    "dev": "nodemon -e ts -w src --exec \"ts-node src\"",
+    "prod": "yarn build && yarn start",
     "build": "tsc",
-    "start": "node ./dist"
+    "start": "node dist"
   },
   "dependencies": {
-    "@sendgrid/mail": "7.0.0",
-    "express": "4.17.1"
+    "@sendgrid/mail": "^7.4.4",
+    "express": "4.17.1",
+    "express-handlebars": "5.2.0"
   },
   "devDependencies": {
     "@types/dotenv": "8.2.0",
     "@types/express": "4.17.6",
+    "@types/express-handlebars": "^3.1.0",
     "@types/node": "13.11.1",
     "dotenv": "^8.2.0",
     "nodemon": "2.0.3",
@@ -40,7 +41,7 @@
     "typescript": "3.8.3"
   },
   "engines": {
-    "node": "^12.18.0",
+    "node": "^14.0.0",
     "yarn": "^1.22.5"
   }
 }

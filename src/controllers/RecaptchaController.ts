@@ -38,7 +38,7 @@ class RecaptchaController {
         });
       }
     } catch (error) {
-      console.error('ERROR-RECAPTCHA_VERIFY ->', error.message);
+      console.error('ERROR-RECAPTCHA-VERIFY ->', error.message);
 
       res.status(500).json({
         error: {

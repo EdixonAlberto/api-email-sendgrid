@@ -8,9 +8,16 @@ const ERROR_MESSAGE: string = 'Missing or incorrect data';
 const route = Router();
 
 /**
+ * Route to use api from an interface
+ */
+// route.get(endpoints.API, (req: Request, res: Response): void => {
+//   res.render('index');
+// });
+
+/**
  *  Route to check api status
  * */
-route.get(endpoints.API, (req: Request, res: Response): void => {
+route.get(endpoints.STATUS, (req: Request, res: Response): void => {
   res.status(200).json({
     api: 'Email Sendgrid',
     version: process.env.npm_package_version,
@@ -34,6 +41,15 @@ route.post(
         subject: body.subject,
         text: body.message
       };
+
+      if (body.atts?.length) {
+        email.attachments = body.atts.map(att => ({
+          content: att.content,
+          filename: att.name,
+          type: att.type,
+          disposition: 'attachment'
+        }));
+      }
 
       EmailController.sendEmail(email, res);
     } else {

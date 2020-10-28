@@ -1,7 +1,12 @@
+type TAttachment = import('@sendgrid/helpers/classes/attachment').AttachmentData;
+type TBase64 = string;
+// TODO: especificar este tipo de dato
+type TMime = string;
+
 type TConfig = {
   port: number;
   headerApiKey: string;
-  urlAllowedList: string;
+  urlAllowedList: string[];
   apiKey: {
     server: string;
     sendgrid: string;
@@ -15,6 +20,11 @@ type TBodyEmail = {
   from: string;
   subject: string;
   message: string;
+  atts?: Array<{
+    name: string;
+    type: TMime;
+    content: TBase64;
+  }>;
 };
 
 type TRecaptchaResponse = {
