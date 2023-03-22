@@ -1,9 +1,5 @@
 # Api Email Sendgrid
 
-[![Linkedin: https://linkedin.com/in/edixonalberto](https://img.shields.io/badge/author-EdixonAlberto-purple.svg)](https://linkedin.com/in/edixonalberto)
-[![MIT license](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE.md)
-![GitHub](https://img.shields.io/github/followers/EdixonAlberto.svg?label=Follow&style=social)
-
 Api to send email through of service the Sendgrid
 
 ![api-email-sendgrid](./.github/image.png)
